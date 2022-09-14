@@ -1,0 +1,98 @@
+﻿@model ResTask.Model.Menu
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="color:white">Create</h1>
+
+<h4 style="color:white">Menu</h4>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body style="background-color:black">
+    <nav class="navbar navbar-expand navbar-dark bg-success sticky-top">
+        <a class="navbar-brand" href="#">
+            <img src="~/Images/zaika.jpg" alt="Logo" style="width:50px;">
+        </a>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./">ZAYKA KING</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <!-- NAVBAR LINKS -->
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Contact</a>
+                </li>
+
+
+
+                <!-- DROPDOWN OPTIONS -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Manage</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item"
+                           asp-area="Restro" asp-controller="Categories" asp-action="Index">Categories</a>
+                        <a class="dropdown-item"
+                           asp-area="Restro" asp-controller="Menus" asp-action="Index">Menus</a>
+                        <a class="dropdown-item"
+                           asp-area="Restro" asp-controller="Orders" asp-action="Index">Orders</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- SEARCH BOX -->
+            <form class="d-flex">
+                <input class="form-control me-2"
+                       type="search"
+                       placeholder="Search site" />
+                <button class="btn btn-primary"
+                        type="submit">
+                    Search
+                </button>
+            </form>
+        </div>
+    </nav>
+</body>
+</html>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" style="color:white">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DishName" class="control-label"></label>
+                <input asp-for="DishName" class="form-control" />
+                <span asp-validation-for="DishName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DishPrice" class="control-label"></label>
+                <input asp-for="DishPrice" class="form-control" />
+                <span asp-validation-for="DishPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label"></label>
+                <select asp-for="CategoryName" class ="form-control" asp-items="ViewBag.CategoryName"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
