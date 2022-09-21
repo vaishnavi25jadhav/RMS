@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ResTask.Model
 {
@@ -29,7 +30,7 @@ namespace ResTask.Model
         #region Navigation Properties to the Category Model
 
         virtual public int CategoryName { get; set; }
-
+        [System.Text.Json.Serialization.JsonIgnore] //[Newtonsoft.Json.JsonIgnore]
         [ForeignKey(nameof(Menu.CategoryName))]
 
         public Category Category { get; set; }
@@ -37,6 +38,7 @@ namespace ResTask.Model
         #endregion
 
         #region Navigation Properties to the Author Model
+        [JsonIgnore]
         public ICollection<Order> Orders { get; set; }
 
         #endregion

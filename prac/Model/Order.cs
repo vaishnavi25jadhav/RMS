@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Text.Json.Serialization;
 namespace ResTask.Model
 {
     [Table(name:"Orders")]
@@ -24,7 +24,7 @@ namespace ResTask.Model
 
         [Required]
         public int DishName { get; set; }
-
+        [JsonIgnore]
         [ForeignKey(nameof(Order.DishName))]
         public Menu Menu { get; set; }
 
